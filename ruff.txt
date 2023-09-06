@@ -1,0 +1,59 @@
+def def_food_drink_services():
+    while True:
+            print("*" * 26 + "SPARE PART NAMES" + "*" * 26)
+            print(" |NO| |PART NAME|        |PRICE|  |  |NO| |PART NAME|        |PRICE|")
+
+            i = 0
+            while i < len(list_foods) or i < len(list_drinks):
+                var_space = 1
+                if i <= 8:                      
+                    var_space = 2
+
+                if i < len(list_foods):
+                    food = " (" + str(i + 1) + ")" + " " * var_space + str(list_foods[i]) + "  | " 
+                else:
+                    food = " " * 36 + "| " 
+                if i < len(list_drinks):
+                    drink = "(" + str(41 + i) + ")" + " " + str(list_drinks[i])
+                else:
+                    drink = ""
+                print(food, drink)
+                i += 1
+
+            print("\n (M) MAIN MENU                   (P) PAYMENT                   (E) EXIT\n" + "_" * 72)
+
+            input_1 = input("Please Select Your Operation: ").upper() 
+            if (input_1 == 'M'):
+                print("\n" * 10)
+                def_main() 
+                break
+            if (input_1 == 'E'):
+                print("*" * 32 + "THANK YOU" + "*" * 31 + "\n") 
+                break
+            if (input_1 == 'P'):
+                print("\n" * 10)
+                def_payment() 
+                break
+            try:        
+                int(input_1)
+                if ((int(input_1) <= len(list_foods) and int(input_1) > 0) or (int(input_1) <= len(list_drinks) + 40 and int(input_1) > 40)):
+                     try:
+                        print("\n" + "_" * 72 + "\n" + str(list_foods[int(input_1) - 1])) 
+                     except:
+                        pass
+                     try:
+                         print("\n" + "_" * 72 + "\n" + str(list_drinks[int(input_1) - 41])) 
+                     except:
+                        pass
+
+                     input_2 = input("How Many Parts You Want?: ").upper() 
+                     if int(input_2) > 0:
+                        list_item_services[int(input_1) - 1] += int(input_2) 
+                        print("\n" * 10)
+                        print("Successfully SERVICESES!")
+                        def_food_drink_SERVICES() 
+                        break
+                     else:
+                        print("\n" * 10 + "ERROR: Invalid Input (" + str(input_2) + "). Try again!")
+            except:
+                print("\n" * 10 + "ERROR: Invalid Input (" + str(input_1) + "). Try again!")
